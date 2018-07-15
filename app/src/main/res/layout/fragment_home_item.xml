@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="co.example.themoviedb.themoviedbapp.home.model.ListItem" />
+
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="@dimen/card_elevation"
+        app:cardUseCompatPadding="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/view_horizontal_spacing"
+            android:paddingBottom="@dimen/activity_vertical_margin">
+
+            <ImageView
+                android:id="@+id/itemImage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="@string/backdrop_ratio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_photo"
+                bind:imagePath="@{item.backdropPath}"
+                bind:transitionName="@{String.valueOf(item.id)}" />
+
+            <TextView
+                android:id="@+id/itemTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:gravity="center"
+                android:text="@{item.title}"
+                android:textAppearance="@style/TheMovieDB.TextAppearance.Headline.H5"
+                app:layout_constraintTop_toBottomOf="@+id/itemImage"
+                tools:text="Suicide Squad" />
+
+            <TextView
+                android:id="@+id/itemSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="3"
+                android:text="@{item.overview}"
+                android:textAppearance="@style/TheMovieDB.TextAppearance.Subhead.S1"
+                app:layout_constraintTop_toBottomOf="@+id/itemTitle"
+                tools:text="Action, heroes, SciFi" />
+
+            <android.support.v7.widget.AppCompatRatingBar
+                android:id="@+id/itemRate"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_vertical_spacing"
+                android:rating="@{item.voteAverage/2}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/itemSubTitle" />
+
+            <TextView
+                android:id="@+id/itemRateDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_horizontal_spacing"
+                android:gravity="center"
+                android:text="@{String.format(@string/home_rate_desc, item.voteAverage, item.voteCount)}"
+                android:textAppearance="@style/TheMovieDB.TextAppearance.Caption"
+                app:layout_constraintBottom_toBottomOf="@+id/itemRate"
+                app:layout_constraintStart_toEndOf="@+id/itemRate"
+                tools:text="5.91 (1466)" />
+
+            <TextView
+                android:id="@+id/itemDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_vertical_spacing"
+                android:drawablePadding="@dimen/small_padding"
+                android:drawableStart="@drawable/ic_event"
+                android:gravity="center"
+                android:textAppearance="@style/TheMovieDB.TextAppearance.Caption"
+                android:text="@{item.releaseDate}"
+                app:layout_constraintStart_toStartOf="@+id/itemRate"
+                app:layout_constraintTop_toBottomOf="@+id/itemRate"
+                tools:text="2012" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</layout>

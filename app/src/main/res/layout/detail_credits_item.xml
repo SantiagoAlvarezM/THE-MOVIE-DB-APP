@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="co.example.themoviedb.themoviedbapp.data.CastType" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/view_vertical_spacing">
+
+        <ImageView
+            android:id="@+id/iVCastProfile"
+            android:layout_width="56dp"
+            android:layout_height="@dimen/zero_dimen"
+            android:layout_margin="@dimen/view_vertical_spacing"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="@string/rec_ratio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_account_circle"
+            bind:circleImage="@{Boolean.TRUE}"
+            bind:imagePath="@{item.castProfilePath}" />
+
+        <TextView
+            android:id="@+id/tVCastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_vertical_spacing"
+            android:gravity="center"
+            android:text="@{item.castName}"
+            android:textAppearance="@style/TheMovieDB.TextAppearance.Body1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iVCastProfile"
+            tools:text="Ryan Gosling" />
+
+        <TextView
+            android:id="@+id/tVCastCharacter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tVCastName"
+            bind:cast="@{item}"
+            tools:text="K" />
+    </android.support.constraint.ConstraintLayout>
+</layout>
