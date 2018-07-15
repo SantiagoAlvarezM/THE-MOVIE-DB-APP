@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">THE MOVIE DB APP</string>
+
+    <!-- General -->
+    <string name="general_error">There is an error, please try again later.</string>
+
+    <!-- Home -->
+    <string name="home_title">TMBD</string>
+    <string name="home_rate_desc">%1$.1f (%2$d)</string>
+
+    <!-- Detail -->
+    <string name="detail_title">Detail</string>
+    <string name="detail_overview_title">Overview</string>
+    <string name="detail_featured_crew_title">Featured Crew</string>
+    <string name="detail_item_desc">%1$s, %2$d mins, %3$s</string>
+
+    <!-- Views -->
+    <string name="backdrop_ratio">H,16:9</string>
+    <string name="poster_ratio">H,3:4</string>
+    <string name="rec_ratio">H,1:1</string>
+
+    <!-- Error Fragment-->
+    <string name="error_emoticon">:(</string>
 </resources>

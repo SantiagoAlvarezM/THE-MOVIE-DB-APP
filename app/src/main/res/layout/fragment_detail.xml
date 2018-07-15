@@ -1,0 +1,136 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="co.example.themoviedb.themoviedbapp.detail.model.DetailItem" />
+    </data>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/activity_vertical_margin"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.example.moviefeed.detail.DetailActivity">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iVDetailPoster"
+                android:layout_width="@dimen/zero_dimen"
+                android:layout_height="@dimen/zero_dimen"
+                android:adjustViewBounds="true"
+                app:layout_constraintDimensionRatio="@string/poster_ratio"
+                app:layout_constraintEnd_toStartOf="@id/posterGuideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_photo"
+                bind:imagePath="@{item.posterPath}" />
+
+            <TextView
+                android:id="@+id/tVDetailTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_horizontal_spacing"
+                android:text="@{item.title}"
+                android:textAppearance="@style/TheMovieDB.TextAppearance.Headline.H5"
+                app:layout_constraintStart_toEndOf="@+id/posterGuideline"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Blade Runner 2049" />
+
+            <TextView
+                android:id="@+id/tVDetailSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_horizontal_spacing"
+                android:layout_marginTop="@dimen/view_vertical_spacing"
+                android:text="@{String.format(@string/detail_item_desc, item.releaseDate, item.runtime, item.spokenLanguages[0])}"
+                android:textAppearance="@style/TheMovieDB.TextAppearance.Body1"
+                app:layout_constraintStart_toEndOf="@+id/posterGuideline"
+                app:layout_constraintTop_toBottomOf="@+id/tVDetailTitle"
+                tools:text="2017, 163 mins, English" />
+
+            <RatingBar
+                android:id="@+id/rBDetailRate"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_horizontal_spacing"
+                android:layout_marginTop="@dimen/view_vertical_spacing"
+                android:rating="@{item.voteAverage/2}"
+                app:layout_constraintBottom_toBottomOf="@+id/tVDetailRateSummary"
+                app:layout_constraintStart_toEndOf="@+id/posterGuideline"
+                app:layout_constraintTop_toBottomOf="@+id/tVDetailSummary" />
+
+            <TextView
+                android:id="@+id/tVDetailRateSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_horizontal_spacing"
+                android:layout_marginTop="@dimen/view_vertical_spacing"
+                android:text="@{String.format(@string/home_rate_desc, item.voteAverage, item.voteCount)}"
+                android:textAppearance="@style/TheMovieDB.TextAppearance.Caption"
+                app:layout_constraintStart_toEndOf="@+id/rBDetailRate"
+                app:layout_constraintTop_toBottomOf="@+id/tVDetailSummary"
+                tools:text="7.41 (1466)" />
+
+            <TextView
+                android:id="@+id/tVDetailOverviewTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/detail_overview_title"
+                android:textAppearance="@style/TheMovieDB.TextAppearance.Body1"
+                app:layout_constraintEnd_toStartOf="@id/posterGuideline"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iVDetailPoster" />
+
+            <TextView
+                android:id="@+id/tVDetailOverview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_vertical_spacing"
+                android:text="@{item.overview}"
+                android:textAppearance="@style/TheMovieDB.TextAppearance.Subhead.S1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tVDetailOverviewTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tVDetailOverviewTitle"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+
+            <TextView
+                android:id="@+id/tVDetailFeaturedCrew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_vertical_spacing"
+                android:text="@string/detail_featured_crew_title"
+                android:textAppearance="@style/TheMovieDB.TextAppearance.Body1"
+                app:layout_constraintStart_toStartOf="@+id/tVDetailOverview"
+                app:layout_constraintTop_toBottomOf="@+id/tVDetailOverview" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rVDetailCredits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_vertical_spacing"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tVDetailFeaturedCrew" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/posterGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".25" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</layout>
